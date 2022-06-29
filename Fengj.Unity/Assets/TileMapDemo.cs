@@ -16,7 +16,7 @@ public class TileMapDemo : MonoBehaviour
         tile.sprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 1, 1), new Vector2(0.5f, 0.5f), 1);
 
 
-        var dictHeight = HeightMapBuilder.Nature.Build(0, 50);
+        var dictHeight = HeightMapBuilder.Nature.Build(0, 100);
 
         foreach (var elem in dictHeight)
         {

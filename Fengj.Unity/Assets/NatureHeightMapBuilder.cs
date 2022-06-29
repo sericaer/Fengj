@@ -11,39 +11,33 @@ class NatureHeightMapBuilder : HeightMapBuilder
             .ToArray();
 
         var mountCoreIndex = new HashSet<(int x, int y)>();
-        while(mountCoreIndex.Count < System.Math.Max(positions.Length / 200, 3))
+        while (mountCoreIndex.Count < System.Math.Max(positions.Length / 200, 3))
         {
             mountCoreIndex.Add(positions[Random.Range(0, positions.Length)]);
         }
 
-        var rslt = new Dictionary<(int x, int y), int>();
+        var temp = new Dictionary<(int x, int y), int>();
         foreach (var index in mountCoreIndex)
         {
-            rslt.Add(index, 100);
+            temp.Add(index, 100);
         }
 
-        IEnumerable<(int x, int y)> curr = rslt.Keys;
+        IEnumerable<(int x, int y)> curr = temp.Keys;
 
-        while (rslt.Count() < positions.Count())
+        while (temp.Count() < 10000)
         {
-            var neighborGroups = curr.Select(x => (key: x, values: x.GetNeighbors().Where(x => positions.Contains(x)))).ToArray();
-            foreach (var group in neighborGroups)
+            var needIndexs = curr.SelectMany(x => x.GetNeighbors()).Distinct().Where(x => positions.Contains(x) && !temp.ContainsKey(x)).ToArray();
+            foreach(var need in needIndexs)
             {
-                foreach (var neighbor in group.values)
-                {
-                    if (rslt.ContainsKey(neighbor))
-                    {
-                        continue;
-                    }
-
-                    rslt.Add(neighbor, System.Math.Max(rslt[group.key] - Random.Range(0, 10), -100));
-                }
+                int average = (int)need.GetNeighbors().Where(x => temp.ContainsKey(x)).Average(x => temp[x]);
+                temp.Add(need, System.Math.Max(average - Random.Range(-50, 100), -100));
             }
 
-            curr = neighborGroups.SelectMany(x => x.values).Distinct();
+            curr = needIndexs;
         }
 
-        return rslt.ToDictionary(x=>x.Key, y=>(y.Value+100)/200f);
+
+        return temp.ToDictionary(x=>x.Key, y=>(y.Value+100)/200f);
     }
 }
 
@@ -61,6 +55,6 @@ static class Externtions
             (self.x-1, self.y),
             (self.x-1, self.y+1),
             (self.x-1, self.y-1),
-        };
+        }.OrderBy(_=>Random.Range(0, 100));
     }
 }
