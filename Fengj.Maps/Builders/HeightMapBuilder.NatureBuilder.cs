@@ -24,39 +24,48 @@ namespace Fengj.Maps.Builders
                     mountCoreIndex.Add(positions[random.Next(0, positions.Length)]);
                 }
 
-                var temp = new Dictionary<(int x, int y), int>();
-                foreach (var index in mountCoreIndex)
+
+                var rslt = new Dictionary<(int x, int y), int>();
+
+                var center = (0, 0);
+                rslt.Add(center, 50);
+                foreach (var index in topology.GetNeighbors(center))
                 {
-                    temp.Add(index, 100);
+                    rslt.TryAdd(center, 50);
                 }
 
-                IEnumerable<(int x, int y)> curr = temp.Keys;
-
-                while (temp.Count() < positions.Length)
+                foreach (var index in mountCoreIndex)
                 {
-                    var needIndexs = curr.SelectMany(x => topology.GetNeighbors(x)).Distinct().Where(x => positions.Contains(x) && !temp.ContainsKey(x)).ToArray();
+                    rslt.TryAdd(index, 100);
+                }
+
+                IEnumerable<(int x, int y)> curr = rslt.Keys;
+
+                while (rslt.Count() < positions.Length)
+                {
+                    var needIndexs = curr.SelectMany(x => topology.GetNeighbors(x)).Distinct().Where(x => positions.Contains(x) && !rslt.ContainsKey(x)).ToArray();
                     foreach (var need in needIndexs)
                     {
-                        var neighbors = topology.GetNeighbors(need).Where(x => temp.ContainsKey(x));
-                        var maxHeightCount = neighbors.Count(x => temp[x] >= 90);
+                        var neighbors = topology.GetNeighbors(need).Where(x => rslt.ContainsKey(x));
+                        var maxHeightCount = neighbors.Count(x => rslt[x] >= 90);
                         if (maxHeightCount == 1)
                         {
                             if (random.Next(0, 100) >= 30)
                             {
-                                temp.Add(need, random.Next(85, 95));
+                                rslt.Add(need, random.Next(85, 95));
                                 continue;
                             }
                         }
 
-                        int average = (int)neighbors.SelectMany(x => topology.GetNeighbors(x).Where(x => temp.ContainsKey(x))).Concat(neighbors).Average(x => temp[x]);
-                        temp.Add(need, System.Math.Min(System.Math.Max(average + nosieMap[need], -100), 100));
+                        int average = (int)neighbors.SelectMany(x => topology.GetNeighbors(x).Where(x => rslt.ContainsKey(x))).Concat(neighbors).Average(x => rslt[x]);
+                        rslt.Add(need, System.Math.Min(System.Math.Max(average + nosieMap[need], -100), 100));
                     }
 
                     curr = needIndexs;
                 }
 
 
-                return temp.ToDictionary(x => x.Key, y => (y.Value + 100) / 200f);
+                return rslt.ToDictionary(x => x.Key, y => (y.Value + 100) / 200f);
             }
         }
     }

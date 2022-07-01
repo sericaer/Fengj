@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Fengj.Maps.Toplogoies
 {
-    class RectangleTopology : IMap.IToplogoy
+    class Rectangle : IMap.IToplogoy
     {
         public IEnumerable<(int x, int y)> GetNeighbors((int x, int y) pos)
         {

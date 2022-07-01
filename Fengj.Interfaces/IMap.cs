@@ -17,6 +17,12 @@ namespace Fengj.Interfaces
         }
     }
 
+    public enum MapType
+    {
+        Hexagon,
+        Rectangle
+    }
+
     public enum TerrainType
     {
         Plain,

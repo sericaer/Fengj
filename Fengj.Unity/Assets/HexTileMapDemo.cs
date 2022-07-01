@@ -5,10 +5,11 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public class TileMapDemo : MonoBehaviour
+public class HexTileMapDemo : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    public Sprite sprite;
     public Tilemap heightMap;
     public Tilemap terrainMap;
     public Toggle toggleHeightMap;
@@ -27,10 +28,10 @@ public class TileMapDemo : MonoBehaviour
         mapCamera.orthographicSize = 50;
 
         var tile = ScriptableObject.CreateInstance<Tile>();
-        tile.sprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 1, 1), new Vector2(0.5f, 0.5f), 1);
+        tile.sprite = sprite;
 
         var seed = "TEST";
-        mapData = MapBuilder.Build(seed, 100, MapType.Rectangle);
+        mapData = MapBuilder.Build(seed, 100, MapType.Hexagon);
 
         foreach (var elem in mapData.dictHeight)
         {
@@ -79,24 +80,5 @@ public class TileMapDemo : MonoBehaviour
         {
             mapCamera.orthographicSize -= scrollWheel;
         }
-    }
-}
-
-static class Extentions
-{
-    public static Dictionary<TerrainType, Color> dictTerrainColor = new Dictionary<TerrainType, Color>()
-    {
-        { TerrainType.Plain, Color.green},
-        { TerrainType.Hill, Color.yellow},
-        { TerrainType.Mount, new Color(128 / 255f, 0, 128 / 255f)},
-        { TerrainType.Marsh, new Color(95 / 255f, 158 / 255f, 160 / 255f)},
-        { TerrainType.Water, Color.blue},
-    };
-
-    public static void SetTerrainColor(this Tilemap self, Vector3Int pos,  TerrainType terrainType)
-    {
-        self.SetTileFlags(pos, TileFlags.None);
-
-        self.SetColor(pos, dictTerrainColor[terrainType]);
     }
 }
