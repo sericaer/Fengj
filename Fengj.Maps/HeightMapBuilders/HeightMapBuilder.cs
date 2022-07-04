@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Fengj.Maps.Builders
+namespace Fengj.Maps.HeightMapBuilders
 {
     abstract partial class HeightMapBuilder
     {

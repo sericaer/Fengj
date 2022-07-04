@@ -1,5 +1,5 @@
 using Fengj.Interfaces;
-using Fengj.Maps.Builders;
+using Fengj.Maps;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -30,7 +30,7 @@ public class TileMapDemo : MonoBehaviour
         tile.sprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0, 0, 1, 1), new Vector2(0.5f, 0.5f), 1);
 
         var seed = "TEST";
-        mapData = MapBuilder.Build(seed, 100, MapType.Rectangle);
+        mapData = Map.Builder.Build(seed, 100, MapType.Rectangle);
 
         foreach (var elem in mapData.dictHeight)
         {

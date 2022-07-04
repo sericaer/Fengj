@@ -1,5 +1,5 @@
 using Fengj.Interfaces;
-using Fengj.Maps.Builders;
+using Fengj.Maps;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -31,7 +31,7 @@ public class HexTileMapDemo : MonoBehaviour
         tile.sprite = sprite;
 
         var seed = "TEST";
-        mapData = MapBuilder.Build(seed, 100, MapType.Hexagon);
+        mapData = Map.Builder.Build(seed, 100, MapType.Hexagon);
 
         foreach (var elem in mapData.dictHeight)
         {
