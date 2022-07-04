@@ -7,17 +7,21 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Fengj.InitDatas;
 using UnityEngine.UI;
+using System.Linq;
+using Fengj.Mods;
 
 public class InitialScene : MonoBehaviour
 {
     public InputField seed;
 
     public Button confirm;
+    public Button randomButton;
 
     // Start is called before the first frame update
     void Start()
     {
-        seed.text = DateTime.Now.ToString();
+
+        Global.modder = new Modder();
 
         var initData = new InitData();
 
@@ -35,11 +39,20 @@ public class InitialScene : MonoBehaviour
                 Global.session = Session.Builder.Build(initData);
             };
         });
+
+        randomButton.onClick.AddListener(UpdateSeed);
+
+        UpdateSeed();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void UpdateSeed()
+    {
+        seed.text = Global.modder.seeds[UnityEngine.Random.Range(0, Global.modder.seeds.Length)];
     }
 }

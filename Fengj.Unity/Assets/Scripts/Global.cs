@@ -9,4 +9,5 @@ static class Global
 {
     public static IInitData initData;
     public static ISession session;
+    public static IModder modder;
 }
