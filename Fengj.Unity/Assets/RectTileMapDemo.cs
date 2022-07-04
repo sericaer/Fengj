@@ -5,9 +5,10 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public class HexTileMapDemo : MonoBehaviour
+public class RectTileMapDemo : MonoBehaviour
 {
     public MapLogic mapLogic;
+
 
     public Slider heightSlider;
     public Slider waterSlider;
