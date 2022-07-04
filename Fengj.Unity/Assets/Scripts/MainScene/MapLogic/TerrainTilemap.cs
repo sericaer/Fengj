@@ -33,6 +33,8 @@ public class TerrainTilemap : MonoBehaviour
         }
     }
 
+    public GridLayout.CellLayout CellLayout => tilemap.cellLayout;
+
     private Tile _tile;
 
     internal void UpdateTerrain(Vector3Int pos, TerrainType value)

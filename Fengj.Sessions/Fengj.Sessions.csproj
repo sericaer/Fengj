@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\Fengj.Unity\Assets\Depends\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fengj.Interfaces\Fengj.Interfaces.csproj" />
+    <ProjectReference Include="..\Fengj.Maps\Fengj.Maps.csproj" />
+  </ItemGroup>
+
+</Project>

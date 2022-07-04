@@ -28,7 +28,7 @@ namespace Fengj.Maps
 
                 var random = new Random(hash);
 
-                map.dictHeight = HeightMapBuilder.Nature.Build(size / 2 * -1, size / 2, map.topology, random); ;
+                map.dictHeight = HeightMapBuilder.Nature.Build(size / 2 * -1, size / 2, map.topology, random);
                 map.SetTerrainPercent(50, 50);
 
                 return map;
