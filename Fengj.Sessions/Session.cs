@@ -1,10 +1,13 @@
 ﻿using Fengj.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace Fengj.Sessions
 {
     public partial class Session : ISession
     {
         public IMap map { get; internal set; }
+
+        public IPawn.IManager pawns { get; internal set; }
     }
 }

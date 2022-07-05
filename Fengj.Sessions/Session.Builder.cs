@@ -1,5 +1,6 @@
 ﻿using Fengj.Interfaces;
 using Fengj.Maps;
+using Fengj.Sessions.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +17,8 @@ namespace Fengj.Sessions
 
                 session.map = Map.Builder.Build(initData.seed, initData.mapSize, MapType.Hexagon);
                 session.map.SetTerrainPercent(initData.mapHeightPercent, initData.mapHumidityPercent);
+
+                session.pawns = PawnManager.Builder.Build();
 
                 return session;
             }

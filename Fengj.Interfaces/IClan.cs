@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Fengj.Interfaces
 {
-    public interface ISession
+    public interface IClan : IPawn
     {
-        IMap map { get; }
-        IPawn.IManager pawns { get; }
+
     }
 }
