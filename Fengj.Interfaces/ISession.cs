@@ -6,7 +6,10 @@ namespace Fengj.Interfaces
 {
     public interface ISession
     {
+        IDate date { get; }
         IMap map { get; }
         IPawn.IManager pawns { get; }
+
+        void DaysInc();
     }
 }

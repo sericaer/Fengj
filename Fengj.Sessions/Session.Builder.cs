@@ -15,6 +15,7 @@ namespace Fengj.Sessions
             {
                 var session = new Session();
 
+                session.date = new Date();
                 session.map = Map.Builder.Build(initData.seed, initData.mapSize, MapType.Hexagon);
                 session.map.SetTerrainPercent(initData.mapHeightPercent, initData.mapHumidityPercent);
 
