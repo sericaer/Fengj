@@ -17,5 +17,7 @@ namespace Fengj.Interfaces
             void AddPawn(IPawn pawn);
             void RemovePawn(IPawn pawn);
         }
+
+        void OnDaysInc(IDate date);
     }
 }

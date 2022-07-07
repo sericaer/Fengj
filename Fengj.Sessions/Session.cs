@@ -15,6 +15,11 @@ namespace Fengj.Sessions
         public void DaysInc()
         {
             date.day++;
+
+            foreach(var pawn in pawns.all)
+            {
+                pawn.OnDaysInc(date);
+            }
         }
     }
 }

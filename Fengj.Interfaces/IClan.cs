@@ -6,11 +6,14 @@ namespace Fengj.Interfaces
 {
     public interface IClan : IPawn
     {
-        //public decimal population { get; }
+        public int population { get; }
+
         //public IEnumerable<(string desc, decimal value)> populationChangeds { get; }
 
-        //public decimal supplies { get; }
+        public double supplies { get; }
 
-        //public decimal consumes { get; }
+        public double consumes { get; }
+
+        public double consumesPer { get; }
     }
 }

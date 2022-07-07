@@ -571,7 +571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8019754077026110595, guid: fb27472a84911dd469f64cc0516b86bb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8019754077026110654, guid: fb27472a84911dd469f64cc0516b86bb, type: 3}
       propertyPath: m_RootOrder
@@ -619,11 +619,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8019754077176693985, guid: fb27472a84911dd469f64cc0516b86bb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8019754078281271841, guid: fb27472a84911dd469f64cc0516b86bb, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8019754078281271843, guid: fb27472a84911dd469f64cc0516b86bb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -2137,7 +2141,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMap: {fileID: 523374090}
   label: {fileID: 1794474790}
-  image: {fileID: 0}
+  image: {fileID: 1754597530}
+  button: {fileID: 1754597529}
+  onShowPawnDetails:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1922363457}
+        m_TargetAssemblyTypeName: MainScene, Assembly-CSharp
+        m_MethodName: OnPawnItemClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1754597529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2424,4 +2444,6 @@ MonoBehaviour:
   mapLogic: {fileID: 523374088}
   pawnContainer: {fileID: 807693012}
   timeSpeedControl: {fileID: 1405457332}
+  UICanvas: {fileID: 1246513776}
   date: {fileID: 1006392613}
+  prefabPawnDetail: {fileID: 1451993176127452825, guid: cd480f757f88ede46beabbe8e93f9fba, type: 3}

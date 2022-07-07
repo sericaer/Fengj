@@ -15,12 +15,16 @@ namespace Fengj.Sessions.Entities
                 rslt.AddPawn(new Clan()
                 {
                     name = "C1",
-                    pos = (0, 0)
+                    pos = (0, 0),
+                    population = 1000,
+                    supplies = 20000,
                 });
                 rslt.AddPawn(new Clan()
                 {
                     name = "C2",
-                    pos = (0, 1)
+                    pos = (0, 1),
+                    population = 2000,
+                    supplies = 80000,
                 });
 
                 return rslt;
