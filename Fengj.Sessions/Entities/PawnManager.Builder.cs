@@ -12,20 +12,8 @@ namespace Fengj.Sessions.Entities
             public static IPawn.IManager Build()
             {
                 var rslt = new PawnManager();
-                rslt.AddPawn(new Clan()
-                {
-                    name = "C1",
-                    pos = (0, 0),
-                    population = 1000,
-                    supplies = 20000,
-                });
-                rslt.AddPawn(new Clan()
-                {
-                    name = "C2",
-                    pos = (0, 1),
-                    population = 2000,
-                    supplies = 80000,
-                });
+                rslt.AddPawn(new Clan("C1", (0, 0), 1000, 20000));
+                rslt.AddPawn(new Clan("C2", (0, 1), 2000, 30000));
 
                 return rslt;
             }

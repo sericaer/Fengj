@@ -6,14 +6,34 @@ namespace Fengj.Interfaces
 {
     public interface IClan : IPawn
     {
-        public int population { get; }
-
-        //public IEnumerable<(string desc, decimal value)> populationChangeds { get; }
+        public IConsume consume { get; }
+        public IPopulation population { get; }
 
         public double supplies { get; }
 
-        public double consumes { get; }
+        public interface IConsume
+        {
+            double total { get; }
+            double average { get; }
 
-        public double consumesPer { get; }
+            IEnumerable<IEffect> effects { get; }
+        }
+
+        public interface IPopulation
+        {
+            int total { get; set; }
+
+            public IEnumerable<(string desc, double percent)> populationChangeds { get; }
+
+            void OnDaysInc(IDate date);
+        }
+    }
+
+    public interface IEffect
+    {
+        object from { get; }
+
+        string desc { get; }
+        double value { get; }
     }
 }
