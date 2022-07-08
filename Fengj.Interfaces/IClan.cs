@@ -9,7 +9,9 @@ namespace Fengj.Interfaces
         public IConsume consume { get; }
         public IPopulation population { get; }
 
-        public double supplies { get; }
+        Dictionary<Type, IGood> goods { get; }
+
+        IEnumerable<(string desc, double Value)> foodIncome { get; }
 
         public interface IConsume
         {
@@ -23,7 +25,7 @@ namespace Fengj.Interfaces
         {
             int total { get; set; }
 
-            public IEnumerable<(string desc, double percent)> populationChangeds { get; }
+            IEnumerable<(string desc, double percent)> populationChangeds { get; }
 
             void OnDaysInc(IDate date);
         }
@@ -36,4 +38,10 @@ namespace Fengj.Interfaces
         string desc { get; }
         double value { get; }
     }
+
+    public interface IGood
+    {
+        double Value { get; set; }
+    }
+
 }

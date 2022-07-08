@@ -1,4 +1,5 @@
 using Fengj.Interfaces;
+using Fengj.Sessions.Goods;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ public class ClanDetails : MonoBehaviour
     {
         clanName.text = clan.name;
         population.text = $"{clan.population.total}({clan.population.populationChangeds.Sum(x=>x.percent) : +0;-#}%)";
-        supplies.text = $"{clan.supplies}(-{clan.consume.total})";
+        supplies.text = $"{clan.goods[typeof(Food)].Value}({clan.foodIncome.Sum(x=>x.Value) - clan.consume.total: +0;-#})";
         consumes.text = clan.consume.average.ToString();
     }
 }
