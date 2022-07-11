@@ -18,7 +18,13 @@ public class ClanDetails : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        population.GetComponent<LazyUpdateTooltipTrigger>().funcGetTipInfo = () =>
+        {
+            return new TipInfo()
+            {
+                bodyText = string.Join("\n", clan.population.populationChangeds.Select(x => $"{x.percent: +0;-#}% {x.desc}"))
+            };
+        };
     }
 
     // Update is called once per frame
@@ -28,5 +34,7 @@ public class ClanDetails : MonoBehaviour
         population.text = $"{clan.population.total}({clan.population.populationChangeds.Sum(x=>x.percent) : +0;-#}%)";
         supplies.text = $"{clan.goods[typeof(Food)].Value}({clan.foodIncome.Sum(x=>x.Value) - clan.consume.total: +0;-#})";
         consumes.text = clan.consume.average.ToString();
+
+        
     }
 }
