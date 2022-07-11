@@ -48,6 +48,8 @@ public class MainScene : MonoBehaviour
                     pawnDetailDialog.clan = clan;
                 }
                 break;
+            case IBuliding building:
+                break;
             default:
                 throw new Exception();
         }

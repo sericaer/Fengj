@@ -3,6 +3,7 @@ using Fengj.Maps;
 using Fengj.Sessions.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Fengj.Sessions
@@ -15,11 +16,13 @@ namespace Fengj.Sessions
             {
                 var session = new Session();
 
-                session.date = new Date();
                 session.map = Map.Builder.Build(initData.seed, initData.mapSize, MapType.Hexagon);
                 session.map.SetTerrainPercent(initData.mapHeightPercent, initData.mapHumidityPercent);
 
                 session.pawns = PawnManager.Builder.Build();
+
+                session.relationMgr.AddClan2Building(session.pawns.clans.ElementAt(0), session.pawns.bulidings.ElementAt(0));
+                session.relationMgr.AddClan2Building(session.pawns.clans.ElementAt(1), session.pawns.bulidings.ElementAt(1));
 
                 return session;
             }

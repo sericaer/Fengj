@@ -23,7 +23,7 @@ public class PawnContainer : MonoBehaviour
 
             _pawns = value;
 
-            foreach(var elem in pawns.all)
+            foreach(var elem in pawns.clans)
             {
                 var newInst = Instantiate(defaultPawn.gameObject, this.transform);
                 newInst.GetComponent<PawnItem>().pawnObj = elem;

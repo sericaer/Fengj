@@ -7,7 +7,8 @@ namespace Fengj.Sessions.Entities.Buildings
 {
     public abstract class Building : IBuliding
     {
-        public (int x, int y) pos { get; }
+        public string name { get; }
+        public (int x, int y) pos { get; set; }
 
         public Dictionary<Type, IBuliding.IOutput> outputDict { get; } = new Dictionary<Type, IBuliding.IOutput>();
 
@@ -29,6 +30,9 @@ namespace Fengj.Sessions.Entities.Buildings
             }
         }
 
+        public void OnDaysInc(IDate date)
+        {
 
+        }
     }
 }

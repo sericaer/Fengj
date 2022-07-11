@@ -1,6 +1,9 @@
 ﻿using Fengj.Interfaces;
+using Fengj.Sessions.Entities;
+using Fengj.Sessions.Relations;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fengj.Sessions
 {
@@ -11,6 +14,19 @@ namespace Fengj.Sessions
         public IMap map { get; internal set; }
 
         public IPawn.IManager pawns { get; internal set; }
+
+        public IRelationManager relationMgr { get; internal set; }
+
+        public Session()
+        {
+            Clan.GetToBuildingsRelations = (clan) =>
+            {
+                return relationMgr.clan2BuidingRelations.Where(x => x.clan == clan);
+            };
+
+            date = new Date();
+            relationMgr = new RelationManager();
+        }
 
         public void DaysInc()
         {

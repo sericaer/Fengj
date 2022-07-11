@@ -10,13 +10,21 @@ namespace Fengj.Sessions.Entities
 {
     public partial class Clan : IClan
     {
+        public static Func<IClan, IEnumerable<IClan2Building>> GetToBuildingsRelations;
+
         public string name { get; internal set; }
         public (int x, int y) pos { get; set; }
 
         public IClan.IPopulation population { get; }
         public Dictionary<Type, IClan.IGoodManager> goodMgrs { get; }
         public IEnumerable<IClan.IConsumer> consumers => _consumers;
-        public IEnumerable<IBuliding> bulidings => _buildings;
+        public IEnumerable<IClan2Building> toBuildingRelations
+        {
+            get
+            {
+                return GetToBuildingsRelations(this);
+            }
+        }
 
         private List<IBuliding> _buildings;
         private List<IClan.IConsumer> _consumers;

@@ -14,6 +14,10 @@ namespace Fengj.Interfaces
         {
             IEnumerable<IPawn> all { get; }
 
+            IEnumerable<IClan> clans { get; }
+
+            IEnumerable<IBuliding> bulidings { get; }
+
             void AddPawn(IPawn pawn);
             void RemovePawn(IPawn pawn);
         }

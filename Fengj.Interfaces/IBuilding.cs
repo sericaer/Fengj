@@ -4,10 +4,8 @@ using System.Text;
 
 namespace Fengj.Interfaces
 {
-    public interface IBuliding
+    public interface IBuliding : IPawn
     {
-        (int x, int y) pos { get; }
-
         Dictionary<Type, IOutput> outputDict { get; } 
 
         public interface IOutput

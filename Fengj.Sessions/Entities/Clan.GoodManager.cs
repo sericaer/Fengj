@@ -15,7 +15,7 @@ namespace Fengj.Sessions.Entities
             { 
                 get
                 {
-                    return owner.bulidings.SelectMany(x => x.outputDict.Values)
+                    return owner.toBuildingRelations.SelectMany(x => x.buliding.outputDict.Values)
                         .Where(x => x.good.GetType() == good.GetType())
                         .Select(x => (x.from.ToString(), x.good.Value));
                 }

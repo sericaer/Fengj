@@ -7,7 +7,7 @@ namespace Fengj.Interfaces
     public interface IClan : IPawn
     {
         public IPopulation population { get; }
-        public IEnumerable<IBuliding> bulidings { get; }
+        public IEnumerable<IClan2Building> toBuildingRelations { get; }
 
         public Dictionary<Type, IGoodManager> goodMgrs { get; }
 
