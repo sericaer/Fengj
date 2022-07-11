@@ -6,7 +6,11 @@ namespace Fengj.Interfaces
 {
     public interface IBuliding : IPawn
     {
-        Dictionary<Type, IOutput> outputDict { get; } 
+        bool isProducing { get; }
+
+        IEnumerable<IClan2Building> toClansRelations { get; }
+
+        IEnumerable<IOutput> outputs { get; } 
 
         public interface IOutput
         {
@@ -14,6 +18,4 @@ namespace Fengj.Interfaces
             IGood good { get; }
         }
     }
-
-
 }

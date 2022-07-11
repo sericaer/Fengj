@@ -13,6 +13,20 @@ namespace Fengj.Interfaces
 
         public IEnumerable<IConsumer> consumers { get; }
 
+        public ILaborManager laborMgr { get; }
+
+        public interface ILabor
+        {
+            IClan from { get; }
+        }
+
+        public interface ILaborManager
+        {
+            IEnumerable<ILabor> all { get; }
+
+            void OnDaysInc(IDate date);
+        }
+
         public interface IConsumer
         {
             IGood good { get; }

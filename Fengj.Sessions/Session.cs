@@ -1,5 +1,6 @@
 ﻿using Fengj.Interfaces;
 using Fengj.Sessions.Entities;
+using Fengj.Sessions.Entities.Buildings;
 using Fengj.Sessions.Relations;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,11 @@ namespace Fengj.Sessions
             Clan.GetToBuildingsRelations = (clan) =>
             {
                 return relationMgr.clan2BuidingRelations.Where(x => x.clan == clan);
+            };
+
+            Building.GetToClanRelations = (building) =>
+            {
+                return relationMgr.clan2BuidingRelations.Where(x => x.buliding == building);
             };
 
             date = new Date();

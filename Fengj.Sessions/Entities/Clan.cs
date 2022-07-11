@@ -17,6 +17,7 @@ namespace Fengj.Sessions.Entities
 
         public IClan.IPopulation population { get; }
         public Dictionary<Type, IClan.IGoodManager> goodMgrs { get; }
+        public IClan.ILaborManager laborMgr { get; }
         public IEnumerable<IClan.IConsumer> consumers => _consumers;
         public IEnumerable<IClan2Building> toBuildingRelations
         {
@@ -32,10 +33,13 @@ namespace Fengj.Sessions.Entities
         public Clan()
         {
             goodMgrs = new Dictionary<Type, IClan.IGoodManager>();
+
             _buildings = new List<IBuliding>();
             _consumers = new List<IClan.IConsumer>();
-
+            
             population = new Population(this);
+            laborMgr = new LaborManager(this);
+
             _consumers.Add(new LivingConsumer(this));
             goodMgrs.Add(typeof(Food), new GoodManager(this, new Food()));
         }
@@ -58,6 +62,16 @@ namespace Fengj.Sessions.Entities
             {
                 goodMgr.OnDaysInc(date);
             }
+        }
+
+        public void OccuyLabor(IClan.ILabor labor, IBuliding buliding)
+        {
+
+        }
+
+        public void CleanLabor(IClan.ILabor labor)
+        {
+
         }
     }
 }

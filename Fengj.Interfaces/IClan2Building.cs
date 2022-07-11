@@ -4,5 +4,7 @@
     {
         IClan clan { get; }
         IBuliding buliding { get; }
+
+        IClan.ILabor labor { get; }
     }
 }

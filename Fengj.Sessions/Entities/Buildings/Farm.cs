@@ -9,7 +9,7 @@ namespace Fengj.Sessions.Entities.Buildings
     {
         public Farm((int x, int y) pos) : base(pos)
         {
-            outputDict.Add(typeof(Food), new Output(this, new Food() { Value = 500}));
+            AddOutput(new Food() { Value = 500});
         }
     }
 }

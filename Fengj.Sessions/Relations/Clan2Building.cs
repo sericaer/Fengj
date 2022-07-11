@@ -7,6 +7,8 @@ namespace Fengj.Sessions.Relations
         public IClan clan { get; }
         public IBuliding buliding { get; }
 
+        public IClan.ILabor labor { get; set; }
+
         public Clan2Building(IClan clan, IBuliding buliding)
         {
             this.clan = clan;
