@@ -11,37 +11,33 @@ namespace Fengj.Sessions.Entities
     public partial class Clan : IClan
     {
         public string name { get; internal set; }
-
         public (int x, int y) pos { get; set; }
 
-        public IEnumerable<(string desc, double Value)> foodIncome => bulidings.SelectMany(x => x.outputDict.Values).Where(x => x.good is Food).Select(x => (x.from.ToString(), x.good.Value));
-
         public IClan.IPopulation population { get; }
-        public IClan.IConsume consume { get; }
-
-        public Dictionary<Type, IGood> goods { get; }
-
+        public Dictionary<Type, IClan.IGoodManager> goodMgrs { get; }
+        public IEnumerable<IClan.IConsumer> consumers => _consumers;
         public IEnumerable<IBuliding> bulidings => _buildings;
 
         private List<IBuliding> _buildings;
+        private List<IClan.IConsumer> _consumers;
 
         public Clan()
         {
-            consume = new Consume(this);
-            population = new Population(this);
+            goodMgrs = new Dictionary<Type, IClan.IGoodManager>();
             _buildings = new List<IBuliding>();
+            _consumers = new List<IClan.IConsumer>();
 
-            goods = new Dictionary<Type, IGood>();
-
-            goods.Add(typeof(Food), new Food());
+            population = new Population(this);
+            _consumers.Add(new LivingConsumer(this));
+            goodMgrs.Add(typeof(Food), new GoodManager(this, new Food()));
         }
 
         public Clan(string name, (int x, int y) pos, int population, int food) : this()
         {
             this.name = name;
             this.pos = pos;
-            this.goods[typeof(Food)].Value = food;
             this.population.total = population;
+            this.goodMgrs[typeof(Food)].good.Value = food;
 
             _buildings.Add(new Farm(pos));
         }
@@ -50,12 +46,10 @@ namespace Fengj.Sessions.Entities
         {
             population.OnDaysInc(date);
 
-            if (date.day == 30)
+            foreach(var goodMgr in goodMgrs.Values)
             {
-                goods[typeof(Food)].Value += foodIncome.Sum(x=>x.Value) - consume.total;
+                goodMgr.OnDaysInc(date);
             }
-
-            var foodOutputs = bulidings.SelectMany(x => x.outputDict.Values).Where(x => x.good is Food);
         }
     }
 }

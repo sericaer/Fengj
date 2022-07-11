@@ -9,11 +9,18 @@ namespace Fengj.Sessions.Entities
 {
     partial class Clan
     {
-        public class Consume : IClan.IConsume
+        public class Consume : IClan.IFoodConsume
         {
             public double total => average * owner.population.total;
 
-            public double average => Math.Round(Math.Min(Math.Max(owner.goods[typeof(Food)].Value / 6 / owner.population.total, minPerConsume), maxPerConsume), 1);
+            public double average
+            {
+                get
+                {
+                    var foodMgr = owner.goodMgrs[typeof(Food)];
+                    return Math.Round(Math.Min(Math.Max(foodMgr.good.Value / 6 / owner.population.total, minPerConsume), maxPerConsume), 1);
+                }
+            }
 
             public IEnumerable<IEffect> effects => _effects;
 

@@ -6,14 +6,21 @@ namespace Fengj.Interfaces
 {
     public interface IClan : IPawn
     {
-        public IConsume consume { get; }
         public IPopulation population { get; }
+        public IEnumerable<IBuliding> bulidings { get; }
 
-        Dictionary<Type, IGood> goods { get; }
+        public Dictionary<Type, IGoodManager> goodMgrs { get; }
 
-        IEnumerable<(string desc, double Value)> foodIncome { get; }
+        public IEnumerable<IConsumer> consumers { get; }
 
-        public interface IConsume
+        public interface IConsumer
+        {
+            IGood good { get; }
+
+            IEnumerable<IEffect> effects { get; }
+        }
+
+        public interface IFoodConsume
         {
             double total { get; }
             double average { get; }
@@ -28,6 +35,18 @@ namespace Fengj.Interfaces
             IEnumerable<(string desc, double percent)> populationChangeds { get; }
 
             void OnDaysInc(IDate date);
+        }
+
+        public interface IGoodManager
+        {
+            IGood good { get; }
+
+            IEnumerable<(string desc, double Value)> income { get; }
+
+            IEnumerable<(string desc, double Value)> consume { get; }
+
+            void OnDaysInc(IDate date);
+
         }
     }
 

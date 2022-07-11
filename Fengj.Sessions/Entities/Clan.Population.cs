@@ -13,14 +13,22 @@ namespace Fengj.Sessions.Entities
 
             public int total { get; set; }
 
-            public IEnumerable<(string desc, double percent)> populationChangeds => _populationChangeds.Select(x => (x.desc, x.value));
+            public IEnumerable<(string desc, double percent)> populationChangeds 
+            { 
+                get 
+                { 
+                    return _populationChangeds.Union(owner.consumers.SelectMany(x => x.effects).OfType<ClanPopChangeEffect>())
+                        .Select(x => (x.desc, x.value)); 
+                } 
+            }
 
             private HashSet<IEffect> _populationChangeds = new HashSet<IEffect>();
+            private Clan owner;
 
             public Population(Clan clan)
             {
+                this.owner = clan;
                 _populationChangeds.Add(changedBase);
-                _populationChangeds.UnionWith(clan.consume.effects.OfType<ClanPopChangeEffect>());
             }
 
             public void OnDaysInc(IDate date)
