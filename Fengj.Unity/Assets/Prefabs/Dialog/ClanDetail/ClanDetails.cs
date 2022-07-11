@@ -26,6 +26,18 @@ public class ClanDetails : MonoBehaviour
                 bodyText = string.Join("\n", clan.population.populationChangeds.Select(x => $"{x.percent: +0;-#}% {x.desc}"))
             };
         };
+
+        supplies.GetComponent<LazyUpdateTooltipTrigger>().funcGetTipInfo = () =>
+        {
+
+            var foodMgr = clan.goodMgrs[typeof(Food)];
+
+            return new TipInfo()
+            {
+                bodyText = string.Join("\n", foodMgr.income.Select(x => $"+{x.Value} {x.desc}")
+                                                 .Concat(foodMgr.consume.Select(x => $"-{x.Value} {x.desc}")))
+            };
+        };
     }
 
     // Update is called once per frame
