@@ -23,6 +23,12 @@ namespace Assets.MyUIExtentions
         {
             TimeSpeedControl.CreateGameObject(menuCommand.context as GameObject);
         }
+
+        [MenuItem("GameObject/UI/MyUIExtentions/DragDropContainer")]
+        public static void AddDragDropContainer(MenuCommand menuCommand)
+        {
+            DragDropContainer.CreateGameObject(menuCommand.context as GameObject);
+        }
     }
 
 #endif
