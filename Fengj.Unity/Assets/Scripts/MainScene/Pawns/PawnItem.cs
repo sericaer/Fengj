@@ -22,7 +22,7 @@ public class PawnItem : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        button.onClick.AddListener(() =>
+        button?.onClick.AddListener(() =>
         {
             onShowPawnDetails?.Invoke(this);
         });
@@ -30,7 +30,7 @@ public class PawnItem : MonoBehaviour
 
     void OnDestroy()
     {
-        button.onClick.RemoveAllListeners();
+        button?.onClick.RemoveAllListeners();
     }
 
     // Update is called once per frame

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class MapLogic : MonoBehaviour
 {
+
     public Camera mapCamera;
 
     public TerrainTilemap terrainMap;
+    public PawnContainer pawnContainer;
 
     public IMap mapData
     {
@@ -65,6 +67,11 @@ public class MapLogic : MonoBehaviour
         if (scrollWheel != 0)
         {
             mapCamera.orthographicSize -= scrollWheel;
+
+            //foreach(var pawn in pawnContainer.items)
+            //{
+            //    pawn.transform.localScale = mapCamera.orthographicSize
+            //}
         }
     }
 
