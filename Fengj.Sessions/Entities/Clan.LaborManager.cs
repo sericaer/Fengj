@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using WeakEvents;
 
 namespace Fengj.Sessions.Entities
 {
@@ -9,7 +11,31 @@ namespace Fengj.Sessions.Entities
     {
         public class LaborManager : IClan.ILaborManager
         {
-            public IEnumerable<IClan.ILabor> all => _all;
+            public static Publisher<IClan.ILabor> OnRemoveLabor = new Publisher<IClan.ILabor>();
+            public static Func<IClan.ILabor, ILabor2WorkAble> GetToWorkAbleRelation;
+
+            public IEnumerable<IClan.ILabor> all
+            {
+                get
+                {
+                    int laborCount = owner.population.total / popPerLaber;
+
+                    while (_all.Count < laborCount)
+                    {
+                        _all.Add(new Labor(owner));
+                    }
+                    while (_all.Count > laborCount)
+                    {
+                        var needRemove = _all.Last();
+
+                        OnRemoveLabor.Raise(needRemove);
+
+                        _all.Remove(needRemove);
+                    }
+
+                    return _all;
+                }
+            }
 
             private Clan owner;
             private List<IClan.ILabor> _all = new List<IClan.ILabor>();
@@ -20,29 +46,19 @@ namespace Fengj.Sessions.Entities
             {
                 this.owner = clan;
             }
-
-            public void OnDaysInc(IDate date)
-            {
-                int laborCount = owner.population.total / popPerLaber;
-
-                while(_all.Count < laborCount)
-                {
-                    _all.Add(new Labor(owner));
-                }
-                while (_all.Count > laborCount)
-                {
-                    _all.Remove(_all.Last());
-                }
-            }
         }
 
         public class Labor : IClan.ILabor
         {
             public IClan from { get; }
 
-            public Labor(IClan owner)
+            public bool isWorking => toWorkAbleRelation != null;
+
+            public ILabor2WorkAble toWorkAbleRelation => LaborManager.GetToWorkAbleRelation(this);
+
+            public Labor(IClan from)
             {
-                this.from = owner;
+                this.from = from;
             }
         }
     }

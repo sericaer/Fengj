@@ -10,6 +10,7 @@ namespace Fengj.Interfaces
         IMap map { get; }
         IPawn.IManager pawns { get; }
 
+        IRelationManager relationMgr { get; }
         void DaysInc();
     }
 }

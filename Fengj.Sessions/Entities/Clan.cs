@@ -63,15 +63,5 @@ namespace Fengj.Sessions.Entities
                 goodMgr.OnDaysInc(date);
             }
         }
-
-        public void OccuyLabor(IClan.ILabor labor, IBuliding buliding)
-        {
-
-        }
-
-        public void CleanLabor(IClan.ILabor labor)
-        {
-
-        }
     }
 }

@@ -17,14 +17,15 @@ namespace Fengj.Interfaces
 
         public interface ILabor
         {
+            public bool isWorking { get; }
             IClan from { get; }
+
+            ILabor2WorkAble toWorkAbleRelation { get; }
         }
 
         public interface ILaborManager
         {
             IEnumerable<ILabor> all { get; }
-
-            void OnDaysInc(IDate date);
         }
 
         public interface IConsumer

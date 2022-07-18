@@ -14,11 +14,16 @@ public class ClanDetails : MonoBehaviour
     public Text population;
     public Text consumes;
 
+    public LaborContainer laborContainer;
+
     public IClan clan;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        laborContainer.clan = clan;
+
         population.GetComponent<LazyUpdateTooltipTrigger>().funcGetTipInfo = () =>
         {
             return new TipInfo()

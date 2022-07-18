@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Fengj.Sessions
 {
-    public partial class Session : ISession
+    public partial class Session : ISession, IDisposable
     {
         public IDate date { get; internal set; }
 
@@ -30,6 +30,21 @@ namespace Fengj.Sessions
                 return relationMgr.clan2BuidingRelations.Where(x => x.buliding == building);
             };
 
+            Building.GetToLaborRelations = (building) =>
+            {
+                return relationMgr.labor2WorkAbleRelations.Where(x => x.workAble == building);
+            };
+
+            Clan.LaborManager.GetToWorkAbleRelation = (labor) =>
+            {
+                return relationMgr.labor2WorkAbleRelations.Where(x => x.labor == labor).SingleOrDefault();
+            };
+
+            Clan.LaborManager.OnRemoveLabor.AddListener((labor) =>
+            {
+                relationMgr.RemoveLabor2WorkAble(x => x.labor == labor);
+            });
+
             date = new Date();
             relationMgr = new RelationManager();
         }
@@ -42,6 +57,15 @@ namespace Fengj.Sessions
             {
                 pawn.OnDaysInc(date);
             }
+        }
+
+        public void Dispose()
+        {
+            Clan.LaborManager.OnRemoveLabor.Clear();
+            Clan.LaborManager.GetToWorkAbleRelation = null;
+            Building.GetToLaborRelations = null;
+            Building.GetToClanRelations = null;
+            Clan.GetToBuildingsRelations = null;
         }
     }
 }

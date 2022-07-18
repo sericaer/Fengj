@@ -9,21 +9,17 @@ namespace Fengj.Sessions.Entities.Buildings
     public abstract class Building : IBuliding
     {
         public static Func<IBuliding, IEnumerable<IClan2Building>> GetToClanRelations;
+        public static Func<IBuliding, IEnumerable<ILabor2WorkAble>> GetToLaborRelations;
 
         public string name { get; }
         public (int x, int y) pos { get; set; }
 
         public IEnumerable<IBuliding.IOutput> outputs => isProducing ? _outputs : _outputsNotProducting;
 
-        public bool isProducing => toClansRelations.Any(x => x.labor != null);
+        public bool isProducing => toLaborRelations.Any();
 
-        public IEnumerable<IClan2Building> toClansRelations
-        {
-            get
-            {
-                return GetToClanRelations(this);
-            }
-        }
+        public IEnumerable<IClan2Building> toClansRelations => GetToClanRelations(this);
+        public IEnumerable<ILabor2WorkAble> toLaborRelations => GetToLaborRelations(this);
 
         private List<IBuliding.IOutput> _outputs = new List<IBuliding.IOutput>();
         private List<IBuliding.IOutput> _outputsNotProducting = new List<IBuliding.IOutput>();

@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Fengj.Interfaces\Fengj.Interfaces.csproj" />
     <ProjectReference Include="..\Fengj.Maps\Fengj.Maps.csproj" />
+    <ProjectReference Include="..\WeakEvents\WeakEvents.csproj" />
   </ItemGroup>
 
 </Project>
