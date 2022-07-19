@@ -14,6 +14,7 @@ public class MainScene : MonoBehaviour
     public Date date;
 
     public GameObject prefabPawnDetail;
+    public GameObject prefabCellDetail;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,17 @@ public class MainScene : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnCellClick(Vector3Int pos)
+    {
+        var cellDetailDialog = UICanvas.GetComponentInChildren<CellDetail>();
+        if(cellDetailDialog == null)
+        {
+            cellDetailDialog = Instantiate(prefabCellDetail, UICanvas.transform).GetComponent<CellDetail>();
+        }
+
+        cellDetailDialog.pos = pos;
     }
 
     public void OnPawnItemClick(UnityEngine.Object item)

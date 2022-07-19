@@ -729,9 +729,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8019754077026110655, guid: fb27472a84911dd469f64cc0516b86bb, type: 3}
+      propertyPath: onShowCellDetails.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8019754077026110655, guid: fb27472a84911dd469f64cc0516b86bb, type: 3}
+      propertyPath: onShowCellDetails.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8019754077026110655, guid: fb27472a84911dd469f64cc0516b86bb, type: 3}
+      propertyPath: onShowCellDetails.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1922363457}
+    - target: {fileID: 8019754077026110655, guid: fb27472a84911dd469f64cc0516b86bb, type: 3}
+      propertyPath: onShowCellDetails.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8019754077026110655, guid: fb27472a84911dd469f64cc0516b86bb, type: 3}
+      propertyPath: onShowCellDetails.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnCellClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8019754077026110655, guid: fb27472a84911dd469f64cc0516b86bb, type: 3}
+      propertyPath: onShowCellDetails.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainScene, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8019754077026110655, guid: fb27472a84911dd469f64cc0516b86bb, type: 3}
+      propertyPath: onShowCellDetails.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8019754077176693985, guid: fb27472a84911dd469f64cc0516b86bb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8019754078281271841, guid: fb27472a84911dd469f64cc0516b86bb, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -837,7 +865,7 @@ Canvas:
   m_RenderMode: 1
   m_Camera: {fileID: 523374089}
   m_PlaneDistance: 100
-  m_PixelPerfect: 1
+  m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -1661,7 +1689,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 32
 --- !u!114 &1246513775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3134,6 +3162,7 @@ MonoBehaviour:
   UICanvas: {fileID: 1246513776}
   date: {fileID: 1006392613}
   prefabPawnDetail: {fileID: 1451993176127452825, guid: cd480f757f88ede46beabbe8e93f9fba, type: 3}
+  prefabCellDetail: {fileID: 471985457879672421, guid: 9f6e6c77c0ff70748a9195f4e7d08b47, type: 3}
 --- !u!1 &1948885998
 GameObject:
   m_ObjectHideFlags: 0

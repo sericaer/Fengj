@@ -50,4 +50,9 @@ public class TerrainTilemap : MonoBehaviour
 
         tilemap.SetColor(pos, dictTerrainColor[value]);
     }
+
+    internal Vector3Int WorldToCell(Vector2 mousePos)
+    {
+        return tilemap.WorldToCell(mousePos);
+    }
 }

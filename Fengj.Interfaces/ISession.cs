@@ -8,6 +8,7 @@ namespace Fengj.Interfaces
     {
         IDate date { get; }
         IMap map { get; }
+
         IPawn.IManager pawns { get; }
 
         IRelationManager relationMgr { get; }

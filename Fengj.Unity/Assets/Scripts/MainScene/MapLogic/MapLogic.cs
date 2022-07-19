@@ -1,6 +1,9 @@
 using Fengj.Interfaces;
 using Fengj.Maps;
+using System;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class MapLogic : MonoBehaviour
 {
@@ -9,6 +12,10 @@ public class MapLogic : MonoBehaviour
 
     public TerrainTilemap terrainMap;
     public PawnContainer pawnContainer;
+
+    [Serializable]
+    public class RadioEvent : UnityEvent<Vector3Int> { }
+    public RadioEvent onShowCellDetails;
 
     public IMap mapData
     {
@@ -20,10 +27,10 @@ public class MapLogic : MonoBehaviour
         {
             _mapData = value;
 
-            foreach (var elem in mapData.dictTerrain)
-            {
-                terrainMap.SetTerrain(new Vector3Int(elem.Key.x, elem.Key.y), elem.Value);
-            }
+            //foreach (var elem in mapData.dictTerrain)
+            //{
+            //    terrainMap.SetTerrain(new Vector3Int(elem.Key.x, elem.Key.y), elem.Value);
+            //}
         }
     }
 
@@ -47,6 +54,23 @@ public class MapLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3Int gridPos = terrainMap.WorldToCell(mousePos);
+
+
+            //if (tilemap.HasTile(gridPos))
+            Debug.Log($"Hello World from {gridPos} {mapData.dictTerrain[(gridPos.x, gridPos.y)]}");
+
+            onShowCellDetails?.Invoke(gridPos);
+        }
+
         ////当鼠标在屏幕边界，移动地图
         //var offsetPos = mapCamera.ScreenToViewportPoint(Input.mousePosition);
         //if (offsetPos.x < 0.01 || offsetPos.y < 0.01 || offsetPos.x >= 0.99f || offsetPos.y >= 0.99f)

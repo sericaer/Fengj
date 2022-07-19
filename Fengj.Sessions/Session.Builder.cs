@@ -19,6 +19,7 @@ namespace Fengj.Sessions
                 session.map = Map.Builder.Build(initData.seed, initData.mapSize, MapType.Hexagon);
                 session.map.SetTerrainPercent(initData.mapHeightPercent, initData.mapHumidityPercent);
 
+                session.cells = CellManager.Builder.Build(session.map);
                 session.pawns = PawnManager.Builder.Build();
 
                 session.relationMgr.AddClan2Building(session.pawns.clans.ElementAt(0), session.pawns.bulidings.ElementAt(0));
