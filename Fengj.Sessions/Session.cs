@@ -14,6 +14,8 @@ namespace Fengj.Sessions
 
         public IMap map { get; internal set; }
 
+        public IClan player { get; internal set; }
+
         public IPawn.IManager pawns { get; internal set; }
 
         public IRelationManager relationMgr { get; internal set; }

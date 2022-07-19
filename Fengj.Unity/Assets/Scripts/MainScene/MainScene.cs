@@ -48,6 +48,12 @@ public class MainScene : MonoBehaviour
         cellDetailDialog.pos = pos;
     }
 
+    public void OnShowClanDetail(IClan clan)
+    {
+        var pawnDetailDialog = Instantiate(prefabPawnDetail, UICanvas.transform).GetComponent<ClanDetails>();
+        pawnDetailDialog.clan = clan;
+    }
+
     public void OnPawnItemClick(UnityEngine.Object item)
     {
         var pawnItem = item as PawnItem;
