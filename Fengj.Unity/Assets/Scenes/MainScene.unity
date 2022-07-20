@@ -3365,6 +3365,7 @@ MonoBehaviour:
   date: {fileID: 1006392613}
   prefabPawnDetail: {fileID: 1451993176127452825, guid: cd480f757f88ede46beabbe8e93f9fba, type: 3}
   prefabCellDetail: {fileID: 471985457879672421, guid: 9f6e6c77c0ff70748a9195f4e7d08b47, type: 3}
+  prefabBuildingDetail: {fileID: 0}
 --- !u!1 &1948885998
 GameObject:
   m_ObjectHideFlags: 0

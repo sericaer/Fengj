@@ -16,7 +16,7 @@ public class PawnItem : MonoBehaviour
     public IPawn pawnObj;
 
     [Serializable]
-    public class RadioEvent : UnityEvent<PawnItem> { }
+    public class RadioEvent : UnityEvent<IPawn> { }
     public RadioEvent onShowPawnDetails;
 
     // Use this for initialization
@@ -24,7 +24,7 @@ public class PawnItem : MonoBehaviour
     {
         button?.onClick.AddListener(() =>
         {
-            onShowPawnDetails?.Invoke(this);
+            onShowPawnDetails?.Invoke(pawnObj);
         });
     }
 

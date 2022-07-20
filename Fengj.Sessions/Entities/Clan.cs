@@ -27,14 +27,12 @@ namespace Fengj.Sessions.Entities
             }
         }
 
-        private List<IBuliding> _buildings;
         private List<IClan.IConsumer> _consumers;
 
         public Clan()
         {
             goodMgrs = new Dictionary<Type, IClan.IGoodManager>();
 
-            _buildings = new List<IBuliding>();
             _consumers = new List<IClan.IConsumer>();
             
             population = new Population(this);
@@ -50,8 +48,6 @@ namespace Fengj.Sessions.Entities
             this.pos = pos;
             this.population.total = population;
             this.goodMgrs[typeof(Food)].good.Value = food;
-
-            _buildings.Add(new Farm(pos));
         }
 
         public void OnDaysInc(IDate date)

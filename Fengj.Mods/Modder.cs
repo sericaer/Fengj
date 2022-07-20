@@ -1,5 +1,7 @@
 ﻿using Fengj.Interfaces;
+using Fengj.Interfaces.Mods;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Fengj.Mods
@@ -7,6 +9,16 @@ namespace Fengj.Mods
     public class Modder : IModder
     {
         public string[] seeds => seedString.Split("\n").ToArray();
+
+        public Dictionary<Type, IModDef> defs { get; } = new Dictionary<Type, IModDef>()
+        {
+            { typeof(IFarmDef), new FarmDef() }
+        };
+
+
+
+
+
 
         private string seedString = @"世世享德，万邦作式
 率由典常，以蕃王室

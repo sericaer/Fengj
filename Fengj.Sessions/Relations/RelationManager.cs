@@ -13,7 +13,7 @@ namespace Fengj.Sessions.Relations
 
         private List<ILabor2WorkAble> _labor2WorkAbleRelations = new List<ILabor2WorkAble>();
 
-        public void AddClan2Building(IClan clan, IBuliding buliding)
+        public void AddClan2Building(IClan clan, IBuilding buliding)
         {
             _clan2BuidingRelations.Add(new Clan2Building(clan, buliding));
         }
@@ -26,6 +26,11 @@ namespace Fengj.Sessions.Relations
         public void RemoveLabor2WorkAble(Func<ILabor2WorkAble, bool> selector)
         {
             _labor2WorkAbleRelations.RemoveAll(x => selector(x));
+        }
+
+        public void RemoveRelation(ILabor2WorkAble relation)
+        {
+            _labor2WorkAbleRelations.Remove(relation);
         }
     }
 }

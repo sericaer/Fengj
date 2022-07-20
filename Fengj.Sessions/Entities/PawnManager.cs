@@ -1,4 +1,6 @@
 ﻿using Fengj.Interfaces;
+using Fengj.Interfaces.Mods;
+using Fengj.Sessions.Entities.Buildings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +14,22 @@ namespace Fengj.Sessions.Entities
 
         public IEnumerable<IClan> clans => all.OfType<IClan>();
 
-        public IEnumerable<IBuliding> bulidings => all.OfType<IBuliding>();
+        public IEnumerable<IBuilding> bulidings => all.OfType<IBuilding>();
 
         private List<IPawn> _all = new List<IPawn>();
+
+        private Dictionary<Type, IModDef> dictDef = new Dictionary<Type, IModDef>();
+
+        public PawnManager(Dictionary<Type, IModDef> modDefs)
+        {
+            dictDef.Add(typeof(Farm), modDefs[typeof(IFarmDef)]);
+        }
+
+        public void AddPawn<T>((int x, int y) pos) where T : class, IPawn
+        {
+            var pawn = Activator.CreateInstance(typeof(T), pos, dictDef[typeof(T)]) as T;
+            _all.Add(pawn);
+        }
 
         public void AddPawn(IPawn pawn)
         {

@@ -3,6 +3,6 @@
     public interface IClan2Building
     {
         IClan clan { get; }
-        IBuliding buliding { get; }
+        IBuilding buliding { get; }
     }
 }

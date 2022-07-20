@@ -15,6 +15,7 @@ public class MainScene : MonoBehaviour
 
     public GameObject prefabPawnDetail;
     public GameObject prefabCellDetail;
+    public GameObject prefabBuildingDetail;
 
     // Start is called before the first frame update
     void Start()
@@ -54,11 +55,9 @@ public class MainScene : MonoBehaviour
         pawnDetailDialog.clan = clan;
     }
 
-    public void OnPawnItemClick(UnityEngine.Object item)
+    public void OnShowPawnDetail(IPawn pawn)
     {
-        var pawnItem = item as PawnItem;
-
-        switch(pawnItem.pawnObj)
+        switch(pawn)
         {
             case IClan clan:
                 {
@@ -66,8 +65,12 @@ public class MainScene : MonoBehaviour
                     pawnDetailDialog.clan = clan;
                 }
                 break;
-            case IBuliding building:
-                break;
+            //case IBuliding building:
+            //    {
+            //        var buildingDetailDialog = Instantiate(prefabBuildingDetail, UICanvas.transform).GetComponent<BuildingDetails>();
+            //        buildingDetailDialog.buildingObj = building;
+            //    }
+            //    break;
             default:
                 throw new Exception();
         }

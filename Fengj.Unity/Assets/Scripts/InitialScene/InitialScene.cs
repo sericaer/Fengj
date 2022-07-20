@@ -25,7 +25,7 @@ public class InitialScene : MonoBehaviour
 
         var initData = new InitData();
 
-        initData.mapSize = 100;
+        initData.mapSize = 10;
         initData.mapHeightPercent = 80;
         initData.mapHumidityPercent = 20;
 
@@ -36,7 +36,7 @@ public class InitialScene : MonoBehaviour
             var async = SceneManager.LoadSceneAsync(nameof(MainScene), LoadSceneMode.Single);
             async.completed += _ =>
             {
-                Global.session = Session.Builder.Build(initData);
+                Global.session = Session.Builder.Build(initData, Global.modder.defs);
             };
         });
 

@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Fengj.Interfaces.Mods;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Fengj.Interfaces
 {
-    public interface IBuliding : IPawn, IWorkAble
+    public interface IBuilding : IPawn, IWorkAble, IInteractiveAble
     {
         bool isProducing { get; }
-
         IEnumerable<IClan2Building> toClansRelations { get; }
 
         IEnumerable<ILabor2WorkAble> toLaborRelations { get; }
@@ -16,7 +16,7 @@ namespace Fengj.Interfaces
 
         public interface IOutput
         {
-            IBuliding from { get; }
+            IBuilding from { get; }
             IGood good { get; }
         }
     }
