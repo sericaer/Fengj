@@ -23,14 +23,19 @@ public class CellDetail : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        terrain.text = Global.session.map.dictTerrain[(pos.x, pos.y)].ToString();
+        var cell = Global.session.cells[(pos.x, pos.y)];
+        terrain.text = cell.terrain.ToString();
 
         var buildingObj = Global.session.pawns.bulidings.SingleOrDefault(x => x.pos.x == pos.x && x.pos.y == pos.y);
-        if(buildingObj != null)
-        {
-            building.text = ((IPawn)buildingObj)?.name;
+        building.text = ((IPawn)buildingObj)?.name;
 
+        if (buildingObj != null)
+        {
             interactionContainer.target = buildingObj;
+        }
+        else
+        {
+            interactionContainer.target = cell;
         }
     }
 

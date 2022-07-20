@@ -1,6 +1,7 @@
 ﻿using Fengj.Interfaces;
 using Fengj.Interfaces.Mods;
 using Fengj.Maps;
+using Fengj.Sessions.Cells;
 using Fengj.Sessions.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,14 @@ namespace Fengj.Sessions
     {
         public class Builder
         {
-            public static ISession Build(IInitData initData, Dictionary<Type, IModDef> modDefs)
+            public static ISession Build(IInitData initData, IEnumerable<IModDef> modDefs)
             {
                 var session = new Session();
 
                 session.map = Map.Builder.Build(initData.seed, initData.mapSize, MapType.Hexagon);
                 session.map.SetTerrainPercent(initData.mapHeightPercent, initData.mapHumidityPercent);
-                
+
+                session.cells = CellManager.Builder.Build(session.map, modDefs);
                 session.pawns = PawnManager.Builder.Build(modDefs);
 
                 session.relationMgr.AddClan2Building(session.pawns.clans.ElementAt(0), session.pawns.bulidings.ElementAt(0));

@@ -18,11 +18,11 @@ namespace Fengj.Sessions.Entities
 
         private List<IPawn> _all = new List<IPawn>();
 
-        private Dictionary<Type, IModDef> dictDef = new Dictionary<Type, IModDef>();
+        private Dictionary<Type, IBuildingDef> dictDef = new Dictionary<Type, IBuildingDef>();
 
-        public PawnManager(Dictionary<Type, IModDef> modDefs)
+        public PawnManager(IEnumerable<IModDef> modDefs)
         {
-            dictDef.Add(typeof(Farm), modDefs[typeof(IFarmDef)]);
+            dictDef.Add(typeof(Farm), modDefs.OfType<IFarmDef>().SingleOrDefault());
         }
 
         public void AddPawn<T>((int x, int y) pos) where T : class, IPawn

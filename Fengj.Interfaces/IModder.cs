@@ -8,6 +8,6 @@ namespace Fengj.Interfaces
     public interface IModder
     {
         string[] seeds { get; }
-        Dictionary<Type, IModDef> defs { get; }
+        IEnumerable<IModDef> defs { get; }
     }
 }

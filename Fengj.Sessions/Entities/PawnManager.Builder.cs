@@ -11,7 +11,7 @@ namespace Fengj.Sessions.Entities
     {
         public static class Builder
         {
-            public static IPawn.IManager Build(Dictionary<Type, IModDef> modDefs)
+            public static IPawn.IManager Build(IEnumerable<IModDef> modDefs)
             {
                 var rslt = new PawnManager(modDefs);
 

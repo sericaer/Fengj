@@ -10,10 +10,81 @@ namespace Fengj.Mods
     {
         public string[] seeds => seedString.Split("\n").ToArray();
 
-        public Dictionary<Type, IModDef> defs { get; } = new Dictionary<Type, IModDef>()
+        public IEnumerable<IModDef> defs { get; } = new IModDef[]
         {
-            { typeof(IFarmDef), new FarmDef() }
+            new FarmDef(),
+            new TerrainDef()
+            {
+                terrain = TerrainType.Hill,
+                GetVailidInteractionDefs = (context) =>
+                {
+                    return Enumerable.Empty<IInteractionDef>();
+                }
+            },
+            new TerrainDef()
+            {
+                terrain = TerrainType.Mount,
+                GetVailidInteractionDefs = (context) =>
+                {
+                    return Enumerable.Empty<IInteractionDef>();
+                }
+            },
+            new TerrainDef()
+            {
+                terrain = TerrainType.Plain,
+                GetVailidInteractionDefs = (context) =>
+                {
+                    return Enumerable.Empty<IInteractionDef>();
+                }
+            },
+            new TerrainDef()
+            {
+                terrain = TerrainType.Marsh,
+                GetVailidInteractionDefs = (context) =>
+                {
+                    return Enumerable.Empty<IInteractionDef>();
+                }
+            },
+            new TerrainDef()
+            {
+                terrain = TerrainType.Water,
+                GetVailidInteractionDefs = (context) =>
+                {
+                    return Enumerable.Empty<IInteractionDef>();
+                }
+            }
         };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

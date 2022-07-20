@@ -1,4 +1,5 @@
 ﻿using Fengj.Interfaces;
+using Fengj.Sessions.Cells;
 using Fengj.Sessions.Entities;
 using Fengj.Sessions.Entities.Buildings;
 using Fengj.Sessions.Relations;
@@ -13,6 +14,8 @@ namespace Fengj.Sessions
         public IDate date { get; internal set; }
 
         public IMap map { get; internal set; }
+
+        public ICell.IManager cells { get; internal set; }
 
         public IClan player { get; internal set; }
 
